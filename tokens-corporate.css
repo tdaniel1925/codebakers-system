@@ -1,0 +1,139 @@
+/* ==========================================================================
+   CodeBakers Design Tokens — Corporate / Enterprise
+   Inspired by: Salesforce Lightning, SAP Fiori, Azure Portal
+   Feel: Conservative, structured, data-dense, professional, scalable
+   ========================================================================== */
+
+:root {
+  /* ---- Surface & Background ---- */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f4f6f9;
+  --color-bg-tertiary: #ebeef2;
+  --color-bg-inverse: #1b2539;
+  --color-bg-elevated: #ffffff;
+  --color-bg-sunken: #ebeef2;
+
+  /* ---- Text ---- */
+  --color-text-primary: #1b2539;
+  --color-text-secondary: #546173;
+  --color-text-tertiary: #8492a6;
+  --color-text-inverse: #f4f6f9;
+  --color-text-link: #2563a0;
+
+  /* ---- Accent (Professional Blue) ---- */
+  --color-accent: #2563a0;
+  --color-accent-hover: #1d4f82;
+  --color-accent-active: #163d66;
+  --color-accent-subtle: #e8f0f9;
+  --color-accent-text: #ffffff;
+
+  /* ---- Status ---- */
+  --color-success: #12805c;
+  --color-success-subtle: #e9f7f1;
+  --color-warning: #b45309;
+  --color-warning-subtle: #fef3e2;
+  --color-error: #b91c1c;
+  --color-error-subtle: #fce8e8;
+  --color-info: #2563a0;
+  --color-info-subtle: #e8f0f9;
+
+  /* ---- Border ---- */
+  --color-border: #d5dbe3;
+  --color-border-hover: #bcc5d0;
+  --color-border-focus: #2563a0;
+
+  /* ---- Spacing (8px grid, tighter for data density) ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ---- Typography (system fonts for performance, compact) ---- */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+
+  --text-xs: 0.6875rem;  /* 11px — for dense tables and metadata */
+  --text-sm: 0.8125rem;  /* 13px — compact labels */
+  --text-base: 0.875rem; /* 14px — body text (tighter than SaaS) */
+  --text-lg: 1rem;       /* 16px */
+  --text-xl: 1.125rem;   /* 18px */
+  --text-2xl: 1.375rem;  /* 22px */
+  --text-3xl: 1.625rem;  /* 26px */
+  --text-4xl: 2rem;      /* 32px */
+  --text-5xl: 2.5rem;    /* 40px */
+
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.6;
+
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* ---- Border Radius (minimal, structured) ---- */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-xl: 8px;
+  --radius-2xl: 10px;
+  --radius-full: 9999px;
+
+  /* ---- Shadows (structured, defined edges) ---- */
+  --shadow-sm: 0 1px 2px 0 rgb(27 37 57 / 0.05);
+  --shadow-md: 0 2px 4px -1px rgb(27 37 57 / 0.06), 0 1px 3px -1px rgb(27 37 57 / 0.04);
+  --shadow-lg: 0 4px 8px -2px rgb(27 37 57 / 0.07), 0 2px 4px -2px rgb(27 37 57 / 0.04);
+  --shadow-xl: 0 8px 16px -4px rgb(27 37 57 / 0.08), 0 4px 8px -4px rgb(27 37 57 / 0.04);
+
+  /* ---- Transitions ---- */
+  --transition-fast: 120ms ease;
+  --transition-base: 180ms ease;
+  --transition-slow: 250ms ease;
+
+  /* ---- Z-Index ---- */
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-overlay: 30;
+  --z-modal: 40;
+  --z-toast: 50;
+}
+
+/* ---- Dark Mode ---- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-primary: #0e1421;
+    --color-bg-secondary: #151c2c;
+    --color-bg-tertiary: #1d2538;
+    --color-bg-inverse: #f4f6f9;
+    --color-bg-elevated: #151c2c;
+    --color-bg-sunken: #0a0e18;
+
+    --color-text-primary: #d8dde5;
+    --color-text-secondary: #8492a6;
+    --color-text-tertiary: #546173;
+    --color-text-inverse: #1b2539;
+    --color-text-link: #5fa3d9;
+
+    --color-accent: #5fa3d9;
+    --color-accent-hover: #4088c2;
+    --color-accent-active: #2d72aa;
+    --color-accent-subtle: #142233;
+    --color-accent-text: #0e1421;
+
+    --color-border: #222d42;
+    --color-border-hover: #2e3b52;
+    --color-border-focus: #5fa3d9;
+
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 2px 4px -1px rgb(0 0 0 / 0.4), 0 1px 3px -1px rgb(0 0 0 / 0.3);
+    --shadow-lg: 0 4px 8px -2px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  }
+}

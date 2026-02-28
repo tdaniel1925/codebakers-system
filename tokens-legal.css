@@ -1,0 +1,140 @@
+/* ==========================================================================
+   CodeBakers Design Tokens — Legal / Professional Services
+   Inspired by: Clio, LawPay, top-tier law firm sites
+   Feel: Traditional, authoritative, trustworthy, restrained
+   ========================================================================== */
+
+:root {
+  /* ---- Surface & Background ---- */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f8f9fa;
+  --color-bg-tertiary: #f1f3f5;
+  --color-bg-inverse: #1a1f2e;
+  --color-bg-elevated: #ffffff;
+  --color-bg-sunken: #f1f3f5;
+
+  /* ---- Text ---- */
+  --color-text-primary: #1a1f2e;
+  --color-text-secondary: #5c6370;
+  --color-text-tertiary: #8b919e;
+  --color-text-inverse: #f8f9fa;
+  --color-text-link: #1e3a5f;
+
+  /* ---- Accent (Navy) ---- */
+  --color-accent: #1e3a5f;
+  --color-accent-hover: #15294a;
+  --color-accent-active: #0d1b33;
+  --color-accent-subtle: #e8eef5;
+  --color-accent-text: #ffffff;
+
+  /* ---- Status ---- */
+  --color-success: #0d7c4a;
+  --color-success-subtle: #ecf7f1;
+  --color-warning: #b8860b;
+  --color-warning-subtle: #fdf8ed;
+  --color-error: #b91c1c;
+  --color-error-subtle: #fdf0f0;
+  --color-info: #1e3a5f;
+  --color-info-subtle: #e8eef5;
+
+  /* ---- Border ---- */
+  --color-border: #dee2e6;
+  --color-border-hover: #ced4da;
+  --color-border-focus: #1e3a5f;
+
+  /* ---- Spacing (8px grid) ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ---- Typography (serif for headings, sans for body) ---- */
+  --font-sans: 'Source Sans 3', 'Georgia', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  --font-mono: 'Source Code Pro', 'Consolas', monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+
+  --leading-tight: 1.3;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.7;
+
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* ---- Border Radius (more conservative) ---- */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-xl: 8px;
+  --radius-2xl: 12px;
+  --radius-full: 9999px;
+
+  /* ---- Shadows (very subtle, professional) ---- */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.04);
+  --shadow-md: 0 2px 4px -1px rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.04);
+  --shadow-lg: 0 6px 12px -2px rgb(0 0 0 / 0.06), 0 3px 5px -2px rgb(0 0 0 / 0.04);
+  --shadow-xl: 0 12px 24px -4px rgb(0 0 0 / 0.07), 0 4px 8px -2px rgb(0 0 0 / 0.04);
+
+  /* ---- Transitions ---- */
+  --transition-fast: 150ms ease;
+  --transition-base: 200ms ease;
+  --transition-slow: 300ms ease;
+
+  /* ---- Z-Index ---- */
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-overlay: 30;
+  --z-modal: 40;
+  --z-toast: 50;
+}
+
+/* ---- Dark Mode ---- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-primary: #111520;
+    --color-bg-secondary: #1a1f2e;
+    --color-bg-tertiary: #232838;
+    --color-bg-inverse: #f8f9fa;
+    --color-bg-elevated: #1a1f2e;
+    --color-bg-sunken: #0c0f18;
+
+    --color-text-primary: #e2e4e8;
+    --color-text-secondary: #8b919e;
+    --color-text-tertiary: #5c6370;
+    --color-text-inverse: #1a1f2e;
+    --color-text-link: #7da4cf;
+
+    --color-accent: #7da4cf;
+    --color-accent-hover: #5b8ab8;
+    --color-accent-active: #4a7aa8;
+    --color-accent-subtle: #1a2536;
+    --color-accent-text: #111520;
+
+    --color-border: #2a2f3e;
+    --color-border-hover: #3a3f4e;
+    --color-border-focus: #7da4cf;
+
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 2px 4px -1px rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.3);
+    --shadow-lg: 0 6px 12px -2px rgb(0 0 0 / 0.4), 0 3px 5px -2px rgb(0 0 0 / 0.3);
+  }
+}

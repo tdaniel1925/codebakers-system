@@ -1,0 +1,139 @@
+/* ==========================================================================
+   CodeBakers Design Tokens — Healthcare
+   Inspired by: Oscar Health, Zocdoc, modern patient portals
+   Feel: Calm, clean, clinical, reassuring, highly readable
+   ========================================================================== */
+
+:root {
+  /* ---- Surface & Background ---- */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f7fafa;
+  --color-bg-tertiary: #eef4f4;
+  --color-bg-inverse: #0f2830;
+  --color-bg-elevated: #ffffff;
+  --color-bg-sunken: #eef4f4;
+
+  /* ---- Text ---- */
+  --color-text-primary: #0f2830;
+  --color-text-secondary: #4a6670;
+  --color-text-tertiary: #7e969e;
+  --color-text-inverse: #f7fafa;
+  --color-text-link: #0d7377;
+
+  /* ---- Accent (Teal) ---- */
+  --color-accent: #0d7377;
+  --color-accent-hover: #095c5f;
+  --color-accent-active: #074749;
+  --color-accent-subtle: #e6f5f5;
+  --color-accent-text: #ffffff;
+
+  /* ---- Status (high visibility for clinical context) ---- */
+  --color-success: #057a55;
+  --color-success-subtle: #ecfdf5;
+  --color-warning: #c27803;
+  --color-warning-subtle: #fef9ec;
+  --color-error: #c81e1e;
+  --color-error-subtle: #fef0f0;
+  --color-info: #1a56db;
+  --color-info-subtle: #eff4ff;
+
+  /* ---- Border ---- */
+  --color-border: #d5e0e3;
+  --color-border-hover: #b8cad0;
+  --color-border-focus: #0d7377;
+
+  /* ---- Spacing (8px grid) ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ---- Typography (highly readable, larger base) ---- */
+  --font-sans: 'Plus Jakarta Sans', 'Nunito Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Consolas', monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+
+  --leading-tight: 1.3;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
+
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* ---- Border Radius (soft, approachable) ---- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --radius-2xl: 18px;
+  --radius-full: 9999px;
+
+  /* ---- Shadows (gentle, calming) ---- */
+  --shadow-sm: 0 1px 2px 0 rgb(15 40 48 / 0.04);
+  --shadow-md: 0 4px 8px -2px rgb(15 40 48 / 0.06), 0 2px 4px -2px rgb(15 40 48 / 0.04);
+  --shadow-lg: 0 8px 16px -4px rgb(15 40 48 / 0.06), 0 4px 6px -2px rgb(15 40 48 / 0.03);
+  --shadow-xl: 0 16px 32px -8px rgb(15 40 48 / 0.07), 0 6px 12px -4px rgb(15 40 48 / 0.03);
+
+  /* ---- Transitions ---- */
+  --transition-fast: 150ms ease;
+  --transition-base: 200ms ease;
+  --transition-slow: 300ms ease;
+
+  /* ---- Z-Index ---- */
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-overlay: 30;
+  --z-modal: 40;
+  --z-toast: 50;
+}
+
+/* ---- Dark Mode ---- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-primary: #0c1a1e;
+    --color-bg-secondary: #132428;
+    --color-bg-tertiary: #1a2e33;
+    --color-bg-inverse: #f7fafa;
+    --color-bg-elevated: #132428;
+    --color-bg-sunken: #081214;
+
+    --color-text-primary: #dbe6e8;
+    --color-text-secondary: #7e969e;
+    --color-text-tertiary: #4a6670;
+    --color-text-inverse: #0f2830;
+    --color-text-link: #36b3b7;
+
+    --color-accent: #36b3b7;
+    --color-accent-hover: #1d9599;
+    --color-accent-active: #0d7377;
+    --color-accent-subtle: #0d2a2e;
+    --color-accent-text: #0c1a1e;
+
+    --color-border: #1e3840;
+    --color-border-hover: #2a4a52;
+    --color-border-focus: #36b3b7;
+
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 8px -2px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+    --shadow-lg: 0 8px 16px -4px rgb(0 0 0 / 0.4), 0 4px 6px -2px rgb(0 0 0 / 0.3);
+  }
+}
