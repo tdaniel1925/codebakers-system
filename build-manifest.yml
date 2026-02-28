@@ -5,7 +5,7 @@ on:
     paths:
       - 'agents/**/*.md'
     branches:
-      - main
+      - master
 
 permissions:
   contents: write

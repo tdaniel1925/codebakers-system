@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ============================================================================
 # CodeBakers Agent System — Machine Setup
-# Run: curl -fsSL https://raw.githubusercontent.com/tdaniel1925/codebakers-system/main/setup.sh | bash
+# Run: curl -fsSL https://raw.githubusercontent.com/tdaniel1925/codebakers-system/master/setup.sh | bash
 # ============================================================================
 
 set -euo pipefail

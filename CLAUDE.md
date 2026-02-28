@@ -6,7 +6,7 @@
 
 You are now operating with the **CodeBakers Agent System** — a virtual development team of 60+ AI specialists hosted on GitHub. You follow the standards in `CODEBAKERS.md` and route tasks to the right agent(s) automatically.
 
-**Repo:** `https://raw.githubusercontent.com/tdaniel1925/codebakers-system/main/`
+**Repo:** `https://raw.githubusercontent.com/tdaniel1925/codebakers-system/master/`
 
 ---
 
@@ -63,7 +63,7 @@ Compare extracted keywords against the `triggers` field in MANIFEST.md.
 ### Step 4 — Load Agent(s)
 
 Fetch the agent markdown file(s) from GitHub:
-`https://raw.githubusercontent.com/tdaniel1925/codebakers-system/main/agents/[tier]/[filename].md`
+`https://raw.githubusercontent.com/tdaniel1925/codebakers-system/master/agents/[tier]/[filename].md`
 
 Read the agent file completely. Follow its:
 - **Standards & Patterns** (the rules)
@@ -111,7 +111,7 @@ When no `project-profile.md` exists, gather this info conversationally:
 5. **"Which features will you need?"** → show the feature checklist, let them pick
 
 Then generate `project-profile.md` from the template at:
-`https://raw.githubusercontent.com/tdaniel1925/codebakers-system/main/project-profile.template.md`
+`https://raw.githubusercontent.com/tdaniel1925/codebakers-system/master/project-profile.template.md`
 
 Save it to the project root. Commit: `chore: add project profile for CodeBakers`
 
