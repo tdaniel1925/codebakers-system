@@ -1,0 +1,191 @@
+name: Build Agent Manifest
+
+on:
+  push:
+    paths:
+      - 'agents/**/*.md'
+    branches:
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  build-manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Rebuild MANIFEST.md
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            // Recursively find all .md files in agents/
+            function findAgentFiles(dir) {
+              const results = [];
+              if (!fs.existsSync(dir)) return results;
+              const entries = fs.readdirSync(dir, { withFileTypes: true });
+              for (const entry of entries) {
+                const fullPath = path.join(dir, entry.name);
+                if (entry.isDirectory()) {
+                  results.push(...findAgentFiles(fullPath));
+                } else if (entry.name.endsWith('.md')) {
+                  results.push(fullPath);
+                }
+              }
+              return results;
+            }
+
+            // Parse YAML frontmatter from agent file
+            function parseFrontmatter(content) {
+              const match = content.match(/^---\n([\s\S]*?)\n---/);
+              if (!match) return null;
+              const yaml = match[1];
+              const fields = {};
+              for (const line of yaml.split('\n')) {
+                const colonIdx = line.indexOf(':');
+                if (colonIdx === -1) continue;
+                const key = line.slice(0, colonIdx).trim();
+                const value = line.slice(colonIdx + 1).trim();
+                fields[key] = value;
+              }
+              return fields;
+            }
+
+            // Tier display order
+            const tierOrder = [
+              'core', 'features', 'ai', 'integrations',
+              'industries', 'compliance', 'infrastructure',
+              'migration', 'meta'
+            ];
+
+            // Find and parse all agents
+            const agentFiles = findAgentFiles('agents');
+            const agents = [];
+            const warnings = [];
+
+            for (const filePath of agentFiles) {
+              try {
+                const content = fs.readFileSync(filePath, 'utf8');
+                const meta = parseFrontmatter(content);
+                if (!meta || !meta.name || !meta.tier) {
+                  warnings.push(`⚠ Skipping ${filePath}: missing required frontmatter (name, tier)`);
+                  continue;
+                }
+                agents.push({
+                  ...meta,
+                  file: filePath,
+                });
+              } catch (err) {
+                warnings.push(`⚠ Error reading ${filePath}: ${err.message}`);
+              }
+            }
+
+            // Sort: by tier order, then alphabetically by name
+            agents.sort((a, b) => {
+              const tierDiff = tierOrder.indexOf(a.tier) - tierOrder.indexOf(b.tier);
+              if (tierDiff !== 0) return tierDiff;
+              return a.name.localeCompare(b.name);
+            });
+
+            // Count per tier
+            const tierCounts = {};
+            for (const tier of tierOrder) tierCounts[tier] = 0;
+            for (const agent of agents) {
+              tierCounts[agent.tier] = (tierCounts[agent.tier] || 0) + 1;
+            }
+
+            // Generate manifest entries
+            let index = '';
+            let currentTier = '';
+
+            for (const agent of agents) {
+              if (agent.tier !== currentTier) {
+                currentTier = agent.tier;
+                const tierLabel = currentTier.charAt(0).toUpperCase() + currentTier.slice(1);
+                index += `\n#### ${tierLabel}\n\n`;
+              }
+
+              index += `### ${agent.name}\n`;
+              index += `- **File:** ${agent.file}\n`;
+              index += `- **Tier:** ${agent.tier}\n`;
+              index += `- **Triggers:** ${agent.triggers || 'none'}\n`;
+              if (agent.depends_on && agent.depends_on !== 'null') {
+                index += `- **Depends On:** ${agent.depends_on}\n`;
+              }
+              index += `- **Description:** ${agent.description || 'No description'}\n`;
+              index += `\n`;
+            }
+
+            if (agents.length === 0) {
+              index = '\n_No agents registered yet._\n';
+            }
+
+            // Read current manifest
+            const manifestPath = 'MANIFEST.md';
+            let manifest = fs.readFileSync(manifestPath, 'utf8');
+
+            // Replace content between markers
+            const startMarker = '<!-- AGENT_INDEX_START -->';
+            const endMarker = '<!-- AGENT_INDEX_END -->';
+            const startIdx = manifest.indexOf(startMarker);
+            const endIdx = manifest.indexOf(endMarker);
+
+            if (startIdx === -1 || endIdx === -1) {
+              core.setFailed('MANIFEST.md missing AGENT_INDEX_START/END markers');
+              return;
+            }
+
+            const before = manifest.slice(0, startIdx + startMarker.length);
+            const after = manifest.slice(endIdx);
+            manifest = before + '\n' + index + '\n' + after;
+
+            // Update statistics table
+            const now = new Date().toISOString().split('T')[0];
+            const statsTable = `| Metric | Value |
+            |---|---|
+            | Total Agents | ${agents.length} |
+            | Core (Tier 1) | ${tierCounts.core || 0} |
+            | Features (Tier 2) | ${tierCounts.features || 0} |
+            | AI (Tier 3) | ${tierCounts.ai || 0} |
+            | Integrations (Tier 4) | ${tierCounts.integrations || 0} |
+            | Industries (Tier 5) | ${tierCounts.industries || 0} |
+            | Compliance (Tier 6) | ${tierCounts.compliance || 0} |
+            | Infrastructure (Tier 7) | ${tierCounts.infrastructure || 0} |
+            | Migration (Tier 8) | ${tierCounts.migration || 0} |
+            | Meta | ${tierCounts.meta || 0} |
+            | Last Updated | ${now} |`.replace(/^ +/gm, '');
+
+            // Replace the stats table
+            manifest = manifest.replace(
+              /\| Metric \| Value \|[\s\S]*?\| Last Updated \| .* \|/,
+              statsTable
+            );
+
+            // Update the "Last updated" line at the top
+            manifest = manifest.replace(
+              /Last updated: .*/,
+              `Last updated: ${now}`
+            );
+
+            // Write
+            fs.writeFileSync(manifestPath, manifest);
+
+            // Log
+            console.log(`✓ Manifest rebuilt: ${agents.length} agents indexed`);
+            for (const w of warnings) console.log(w);
+
+      - name: Commit updated manifest
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'chore: auto-rebuild MANIFEST.md [skip ci]'
+          file_pattern: MANIFEST.md
